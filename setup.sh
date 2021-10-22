@@ -1,3 +1,2 @@
-export USERNAME=`whoami`
-
-chsh -s /usr/bin/zsh $USERNAME
+RUN export SHELL=`which zsh`
+RUN [ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
