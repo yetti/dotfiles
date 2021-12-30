@@ -21,8 +21,8 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -f
 echo -n 'eval "$(starship init zsh)"' >> ~/.zshrc
 
-# setup zgenom and link .zshrc to home directory
-git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+# setup zinit and link .zshrc to home directory
+sh -c "$(curl -fsSL https://git.io/zinit-install)"
 mv ~/.zshrc ~/.zshrc_orig
 ln -s /workspaces/.codespaces/.persistedshare/dotfiles/.zshrc ~/.zshrc
 # source ~/.zshrc
