@@ -1,9 +1,21 @@
-# load zgenom
-source "${HOME}/.zgenom/zgenom.zsh"
+# Zinit's installer chunk
+# https://github.com/zdharma-continuum/zinit
 
-# Check for plugin and zgenom updates every 7 days
-# This does not increase the startup time.
-zgenom autoupdate
+# Set up the prompt
+
+autoload -Uz promptinit
+promptinit
+prompt fade
+
+# STARSHIP PROMPT
+
+eval "$(starship init zsh)"
+
+# HOMEBREW
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# HISTORY
 
 setopt histignorealldups sharehistory
 
@@ -15,76 +27,6 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
-
-# if the init script doesn't exist
-if ! zgenom saved; then
-    echo "Creating a zgenom save"
-
-    # Ohmyzsh base library
-    zgenom ohmyzsh
-
-    # You can also cherry pick just parts of the base library.
-    # Not loading the base set of ohmyzsh libraries might lead to issues.
-    # While you can do it, I won't recommend it unless you know how to fix
-    # those issues yourself.
-
-    # Remove `zgenom ohmyzsh` and load parts of ohmyzsh like this:
-    # `zgenom ohmyzsh path/to/file.zsh`
-    # zgenom ohmyzsh lib/git.zsh # load git library of ohmyzsh
-
-    # plugins
-    zgenom ohmyzsh plugins/git
-    zgenom ohmyzsh plugins/sudo
-    zgenom ohmyzsh plugins/rails
-    zgenom ohmyzsh plugins/bundler
-
-    # Install ohmyzsh osx plugin if on macOS
-    [[ "$(uname -s)" = Darwin ]] && zgenom ohmyzsh plugins/osx
-
-    # prezto options
-    zgenom prezto editor key-bindings 'emacs'
-
-    # prezto and modules
-    # If you use prezto and ohmyzsh - load ohmyzsh first.
-    zgenom prezto
-    zgenom prezto command-not-found
-
-    # Load prezto tmux when tmux is installed
-    if hash tmux &>/dev/null; then
-        zgenom prezto tmux
-    fi
-
-    # bulk load
-    zgenom loadall <<EOPLUGINS
-        zsh-users/zsh-history-substring-search
-        zsh-users/zsh-autosuggestions
-        zdharma-continuum/fast-syntax-highlighting
-        zdharma-continuum/history-search-multi-word
-        htlsne/zinit-rbenv
-        aperezdc/zsh-fzy
-        unixorn/git-extra-commands
-EOPLUGINS
-    # ^ can't indent this EOPLUGINS
-
-    # completions
-    zgenom load zsh-users/zsh-completions
-
-    # save all to init script
-    zgenom save
-
-    # Compile your zsh files
-    zgenom compile "$HOME/.zshrc"
-    zgenom compile $ZDOTDIR
-
-    # You can perform other "time consuming" maintenance tasks here as well.
-    # If you use `zgenom autoupdate` you're making sure it gets
-    # executed every 7 days.
-
-    # rbenv rehash
-fi
-
-# initialise Starship prompt
-eval "$(starship init zsh)"
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -104,11 +46,57 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+zinit ice wait blockf atpull'zinit creinstall -q .'
+zinit light zsh-users/zsh-completions
+
+zinit ice wait atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait atinit"zpcompinit; zpcdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+zinit load zdharma-continuum/history-search-multi-word
+
+zinit ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
+zinit light tj/git-extras
+source "$HOME/.local/share/zinit/plugins/tj---git-extras/etc/git-extras-completion.zsh"
+
+zinit ice wait"0" lucid
+zinit light htlsne/zinit-rbenv
+zinit snippet OMZ::plugins/rails/rails.plugin.zsh
+zinit snippet OMZ::plugins/bundler/bundler.plugin.zsh
+
+zinit light aperezdc/zsh-fzy
+
+# USER SETTINGS
+
+# ALIASES
+
+alias load_key="ssh-add -s /usr/local/lib/opensc-pkcs11.so"
+alias unload_key="ssh-add -e /usr/local/lib/opensc-pkcs11.so"
+alias full_monty="load_key && sshuttle -H -r user@jump.server 0/0 -x jump.server || unload_key"
+alias kc_up=". ~/Projects/scripts/kc_up.sh"
+alias maildev="npx maildev -s 2525 -w 9090"
+alias be="bundle exec"
+
 # GPG
+
 export GPG_TTY=$(tty)
 
 # direnv
+
 eval "$(direnv hook zsh)"
 
-# Aliases
-alias maildev="npx maildev -s 2525 -w 9090"
+# yarn global path
+
+export PATH="$HOME/.yarn/bin:$PATH"
+
+# NVM
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
