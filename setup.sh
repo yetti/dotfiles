@@ -23,14 +23,14 @@ curl -sS https://starship.rs/install.sh | sh -s -- --yes
 # setup zinit and link .zshrc to home directory
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 mv ~/.zshrc ~/.zshrc_orig
-cp ./.zshrc ~
+cp /workspaces/.codespaces/.persistedshare/dotfiles/.zshrc ~
 # source ~/.zshrc
 
 # link .gitconfig to home directory
-cp ./.gitconfig ~
+cp /workspaces/.codespaces/.persistedshare/dotfiles/.gitconfig ~
 
 # link .wakatime.cfg to home directory and set API KEY
-cp ./.wakatime.cfg ~
+cp /workspaces/.codespaces/.persistedshare/dotfiles/.wakatime.cfg ~
 sed -i "s/WAKATIME_KEY/$WAKATIME_KEY/g" ~/.wakatime.cfg
 
 # set shell
