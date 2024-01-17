@@ -18,7 +18,7 @@ npm install -g yarn pnpm commitizen cz-conventional-changelog
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 
 # install Starship prompt
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -f
+curl -sS https://starship.rs/install.sh | sh -s -- --yes
 echo -n 'eval "$(starship init zsh)"' >> ~/.zshrc
 
 # setup zinit and link .zshrc to home directory
