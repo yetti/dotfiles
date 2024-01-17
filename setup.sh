@@ -25,7 +25,7 @@ curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
 # setup zinit and link .zshrc to home directory
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
-mv ~/.zshrc ~/.zshrc_orig
+#mv ~/.zshrc ~/.zshrc_orig
 cp ./.zshrc ~
 # source ~/.zshrc
 
