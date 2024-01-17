@@ -11,10 +11,6 @@ prompt fade
 
 eval "$(starship init zsh)"
 
-# HOMEBREW
-
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # HISTORY
 
 setopt histignorealldups sharehistory
@@ -72,10 +68,6 @@ zinit light aperezdc/zsh-fzy
 
 # ALIASES
 
-alias load_key="ssh-add -s /usr/local/lib/opensc-pkcs11.so"
-alias unload_key="ssh-add -e /usr/local/lib/opensc-pkcs11.so"
-alias full_monty="load_key && sshuttle -H -r user@jump.server 0/0 -x jump.server || unload_key"
-alias kc_up=". ~/Projects/scripts/kc_up.sh"
 alias maildev="npx maildev -s 2525 -w 9090"
 alias be="bundle exec"
 
@@ -90,13 +82,3 @@ eval "$(direnv hook zsh)"
 # yarn global path
 
 export PATH="$HOME/.yarn/bin:$PATH"
-
-# NVM
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
