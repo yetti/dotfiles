@@ -13,6 +13,9 @@ apt-get update && export DEBIAN_FRONTEND=noninteractive \
     direnv \
     fzy
 
+# set shell
+chsh -s $(which zsh)
+
 # setup commitizen
 npm install -g yarn pnpm commitizen cz-conventional-changelog
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
@@ -23,15 +26,12 @@ curl -sS https://starship.rs/install.sh | sh -s -- --yes
 # setup zinit and link .zshrc to home directory
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 mv ~/.zshrc ~/.zshrc_orig
-cp /workspaces/.codespaces/.persistedshare/dotfiles/.zshrc ~
+cp ./.zshrc ~
 # source ~/.zshrc
 
 # link .gitconfig to home directory
-cp /workspaces/.codespaces/.persistedshare/dotfiles/.gitconfig ~
+cp ./.gitconfig ~
 
 # link .wakatime.cfg to home directory and set API KEY
-cp /workspaces/.codespaces/.persistedshare/dotfiles/.wakatime.cfg ~
+cp ./.wakatime.cfg ~
 sed -i "s/WAKATIME_KEY/$WAKATIME_KEY/g" ~/.wakatime.cfg
-
-# set shell
-chsh -s $(which zsh)
