@@ -19,19 +19,18 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 
 # install Starship prompt
 curl -sS https://starship.rs/install.sh | sh -s -- --yes
-echo -n 'eval "$(starship init zsh)"' >> ~/.zshrc
 
 # setup zinit and link .zshrc to home directory
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 mv ~/.zshrc ~/.zshrc_orig
-ln -s /workspaces/.codespaces/.persistedshare/dotfiles/.zshrc ~/.zshrc
+cp ./.zshrc ~/.zshrc
 # source ~/.zshrc
 
 # link .gitconfig to home directory
-ln -s /workspaces/.codespaces/.persistedshare/dotfiles/.gitconfig ~/.gitconfig
+cp ./.gitconfig ~/.gitconfig
 
 # link .wakatime.cfg to home directory and set API KEY
-ln -s /workspaces/.codespaces/.persistedshare/dotfiles/.wakatime.cfg ~/.wakatime.cfg
+cp ./.wakatime.cfg ~/.wakatime.cfg
 sed -i "s/WAKATIME_KEY/$WAKATIME_KEY/g" ~/.wakatime.cfg
 
 # set shell
