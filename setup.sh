@@ -2,8 +2,9 @@
 
 chsh -s $(which zsh)
 
-# cp ./.zshrc ~
-# source ~/.zshrc
+mv ~/.zshrc ~/.zshrc_orig
+cp ./.zshrc ~
+source ~/.zshrc
 
 # copy .wakatime.cfg to home directory and set API KEY
 cp ./.wakatime.cfg ~
