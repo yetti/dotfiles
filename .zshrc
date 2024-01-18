@@ -70,7 +70,7 @@ ZSH_THEME="devcontainers"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(direnv starship fzf git rails ruby redis-cli)
+plugins=(direnv starship git rails ruby redis-cli)
 
 source $ZSH/oh-my-zsh.sh
 
