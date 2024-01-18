@@ -26,8 +26,8 @@ curl -sS https://starship.rs/install.sh | sh -s -- --yes
 # setup zinit and link .zshrc to home directory
 # sh -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 # mv ~/.zshrc ~/.zshrc_orig
-# cp ./.zshrc ~
-# source ~/.zshrc
+cp ./.zshrc ~
+source ~/.zshrc
 
 # link .gitconfig to home directory
 cp ./.gitconfig ~
