@@ -70,7 +70,7 @@ ZSH_THEME="devcontainers"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby redis-cli fzf)
+plugins=(direnv starship fzf git rails ruby redis-cli)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,16 +103,6 @@ DISABLE_AUTO_UPDATE=true
 DISABLE_UPDATE_PROMPT=true
 
 # End of Oh-My-ZSH config
-
-# Set up the prompt
-
-autoload -Uz promptinit
-promptinit
-prompt fade
-
-# STARSHIP PROMPT
-
-eval "$(starship init zsh)"
 
 # HISTORY
 
@@ -155,10 +145,6 @@ alias be="bundle exec"
 # GPG
 
 export GPG_TTY=$(tty)
-
-# direnv
-
-eval "$(direnv hook zsh)"
 
 # yarn global path
 
