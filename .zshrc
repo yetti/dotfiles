@@ -81,7 +81,7 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit light zdharma-continuum/history-search-multi-word
 
-zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
+# zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
 zinit light tj/git-extras
 
 zinit ice wait"0" lucid
