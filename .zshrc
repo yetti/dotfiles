@@ -34,7 +34,7 @@ autoload -U +X bashcompinit && bashcompinit
 
 autoload -Uz promptinit
 promptinit
-prompt pure
+prompt fade
 
 # HISTORY
 
