@@ -21,11 +21,38 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# ASDF
+
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
+
+# Use modern completion system
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit 
+
+# Set up a default prompt
+
+autoload -Uz promptinit
+promptinit
+prompt pure
+
+# HISTORY
+
+setopt histignorealldups sharehistory
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Completions
+
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -41,75 +68,42 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# zinit plugins
+
 zinit ice wait blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
 zinit ice wait atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-zinit ice wait atinit"zpcdreplay"
+zinit ice wait atinit"zpcompinit; zpcdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-zinit load zdharma-continuum/history-search-multi-word
+zinit light zdharma-continuum/history-search-multi-word
 
-zinit ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
+zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
 zinit light tj/git-extras
-source "$HOME/.local/share/zinit/plugins/tj---git-extras/etc/git-extras-completion.zsh"
-
-zinit light aperezdc/zsh-fzy
 
 zinit ice wait"0" lucid
 zinit snippet OMZ::plugins/rails/rails.plugin.zsh
 zinit snippet OMZ::plugins/bundler/bundler.plugin.zsh
-zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
 zinit snippet OMZ::plugins/direnv/direnv.plugin.zsh
 
-# Set up the prompt
-autoload -Uz promptinit
-promptinit
-prompt fade
-
-# HISTORY
-
-setopt histignorealldups sharehistory
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# ASDF
-
-. "$HOME/.asdf/asdf.sh"
-fpath=(${ASDF_DIR}/completions $fpath)
-
-# Use modern completion system
-autoload -Uz +X compinit && compinit
-autoload -Uz +X bashcompinit && bashcompinit 
-compinit -u
-
-# USER SETTINGS
+zinit light aperezdc/zsh-fzy
 
 # STARSHIP PROMPT
 
-eval "$(starship init zsh)"
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
-# ALIASES
+# USER SETTINGS
 
-alias maildev="npx maildev -s 2525 -w 9090"
-alias be="bundle exec"
+# Rubies
 
-# GPG
-
-export GPG_TTY=$(tty)
-# export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:0:1
-
-# direnv
-
-eval "$(direnv hook zsh)"
+export optflags="-Wno-error=implicit-function-declaration"
 
 # yarn global path
 
 export PATH="$HOME/.yarn/bin:$PATH"
-
-export EDITOR="code --wait"

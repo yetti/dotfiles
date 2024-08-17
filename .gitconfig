@@ -24,8 +24,6 @@
 [user]
 	name = Yetrina Battad
 	email = hello@yetti.io
-[commit]
-	gpgsign = true
 [push]
 	default = current
 [color]
