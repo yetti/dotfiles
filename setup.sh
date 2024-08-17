@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get upgrade -y
+# sudo apt-get update
+# sudo apt-get upgrade -y
 
 # Install basic system utilities
 # sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends zsh telnet fzy tzdata
@@ -13,9 +13,9 @@ sudo apt-get upgrade -y
 # sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential libssl-dev automake autoconf patch rustc
 
 # Install buildpack
-sudo add-apt-repository ppa:cncf-buildpacks/pack-cli -y
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends pack-cli
+# sudo add-apt-repository ppa:cncf-buildpacks/pack-cli -y
+# sudo apt-get update
+# sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends pack-cli
 
 # Copy dotfiles and tool config
 cp {.zshrc,.gitconfig,.gitignore_global,.gemrc} ~/
