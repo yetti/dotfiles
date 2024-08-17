@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # sudo apt-get update
 # sudo apt-get upgrade -y
@@ -28,7 +28,7 @@ sudo chsh -s $(which zsh) vscode
 export TERM=xterm-256color
 export NO_INPUT=1
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-source ~/.zshrc
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 zinit self-update
 
 # Install asdf if it doesn't exist
