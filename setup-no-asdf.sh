@@ -36,11 +36,11 @@ zinit self-update
 
 # Install asdf plugins
 . "$HOME/.asdf/asdf.sh"
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin add yarn
-cp .tool-versions ~/
-asdf install
+# asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+# asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+# asdf plugin add yarn
+# cp .tool-versions ~/
+# asdf install
 
 # Install commitizen
 npm install -g commitizen cz-conventional-changelog
