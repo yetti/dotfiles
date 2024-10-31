@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 # Setup locales
-echo "locales locales/default_environment_locale select en_AU.UTF-8" | debconf-set-selections
-echo "locales locales/locales_to_be_generated multiselect en_AU.UTF-8 UTF-8" | debconf-set-selections
+echo "locales locales/default_environment_locale select en_US.UTF-8" | debconf-set-selections
+echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | debconf-set-selections
 sudo rm "/etc/locale.gen"
 sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
