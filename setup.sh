@@ -3,8 +3,8 @@
 # Setup locales
 echo "locales locales/default_environment_locale select en_AU.UTF-8" | debconf-set-selections
 echo "locales locales/locales_to_be_generated multiselect en_AU.UTF-8 UTF-8" | debconf-set-selections
-rm "/etc/locale.gen"
-dpkg-reconfigure --frontend noninteractive locales
+sudo rm "/etc/locale.gen"
+sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -19,7 +19,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends i
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential libssl-dev automake autoconf patch rustc git-extras libjemalloc2
 
 # Install buildpack
-sudo add-apt-repository ppa:cncf-buildpacks/pack-cli -y
+sudo add-apt-repository ppa:cncf-buildpacks/pack-cli -y --no-install-recomments
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends pack-cli
 
