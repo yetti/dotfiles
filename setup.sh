@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
 # Setup locales
-export LANG=en_AU.UTF-8
-export LANGUAGE=en_AU:en
-export LC_ALL=en_AU.UTF-8
-sudo dpkg-reconfigure locales -f noninteractive
+echo "locales locales/default_environment_locale select en_AU.UTF-8" | debconf-set-selections
+echo "locales locales/locales_to_be_generated multiselect en_AU.UTF-8 UTF-8" | debconf-set-selections
+rm "/etc/locale.gen"
+dpkg-reconfigure --frontend noninteractive locales
 
 sudo apt-get update
 sudo apt-get upgrade -y
