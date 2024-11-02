@@ -1,12 +1,11 @@
 #!/usr/bin/bash
 
 # Setup locales
-export LANGUAGE="en_AU.UTF-8"
-export LC_ALL="en_AU.UTF-8"
-export LC_TYPE="en_AU.UTF-8"
-export LANG="en_AU.UTF-8"
 echo "en_AU.UTF-8" | sudo tee -a /etc/locale.gen
 sudo locale-gen
+export LANGUAGE="en_AU.UTF-8"
+export LC_TYPE="en_AU.UTF-8"
+export LANG="en_AU.UTF-8"
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -49,6 +48,9 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add yarn
 cp .tool-versions ~/
 asdf install
+
+# Install base Ruby gems
+gem install bundler rails foreman
 
 # Install commitizen
 npm install -g commitizen cz-conventional-changelog
