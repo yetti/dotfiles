@@ -38,14 +38,19 @@ bash -c "$(curl --fail --show-error --silent --location https://raw.githubuserco
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 zinit self-update
 
+# Install mise if it doesn't exist
+[ -d '~/.local/bin/mise' ] || curl https://mise.run | sh
+echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
+
+# Install mise plugins
+mise plugin i yarn
+mise install
+
 # Install asdf if it doesn't exist
 [ -d '~/.asdf' ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 
 # Install asdf plugins
 . "$HOME/.asdf/asdf.sh"
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin add yarn
 cp .tool-versions ~/
 asdf install
 
