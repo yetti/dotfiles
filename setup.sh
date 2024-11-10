@@ -38,7 +38,8 @@ bash -c "$(curl --fail --show-error --silent --location https://raw.githubuserco
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 zinit self-update
 
-# Install mise if it doesn't exist
+# Install mise-en-place if it doesn't exist
+cp .tool-versions ~/
 [ -d '~/.local/bin/mise' ] || curl https://mise.run | sh
 # This is hard coded in .zshrc
 # echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
