@@ -40,7 +40,8 @@ zinit self-update
 
 # Install mise if it doesn't exist
 [ -d '~/.local/bin/mise' ] || curl https://mise.run | sh
-echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
+# This is hard coded in .zshrc
+# echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
 
 # Install mise plugins
 mise plugin i yarn
