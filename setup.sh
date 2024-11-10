@@ -47,14 +47,6 @@ zinit self-update
 mise plugin i yarn
 mise install
 
-# Install asdf if it doesn't exist
-[ -d '~/.asdf' ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
-
-# Install asdf plugins
-. "$HOME/.asdf/asdf.sh"
-cp .tool-versions ~/
-asdf install
-
 # Install base Ruby gems
 gem install bundler rails foreman
 
