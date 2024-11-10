@@ -21,10 +21,9 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-# ASDF
+# MISE-EN-PLACE
 
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+eval "$(/home/vscode/.local/bin/mise activate zsh)"
 
 # Use modern completion system
 autoload -U +X compinit && compinit
