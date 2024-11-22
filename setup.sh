@@ -32,11 +32,11 @@ cp -R .config ~/
 sudo chsh -s $(which zsh) vscode
 
 # Install zinit
-export TERM=xterm-256color
-export NO_INPUT=1
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-zinit self-update
+# export TERM=xterm-256color
+# export NO_INPUT=1
+# bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+# source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+# zinit self-update
 
 # Install mise-en-place if it doesn't exist
 cp .tool-versions ~/
