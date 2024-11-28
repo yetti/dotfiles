@@ -1,3 +1,4 @@
 ruby 3.3.6
 nodejs 20.11.0
 yarn 1.22.22
+bun latest
