@@ -49,7 +49,7 @@ mise plugin i yarn
 mise install
 
 # Install base Ruby gems
-gem install bundler rails foreman
+gem install bundler rails foreman standard
 
 # Install commitizen
 npm install -g commitizen cz-conventional-changelog
